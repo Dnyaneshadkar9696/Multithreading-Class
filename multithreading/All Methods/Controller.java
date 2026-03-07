@@ -1,43 +1,40 @@
-package multithreading.runnableinterface;
+package multithreading.threadclass;
 
 public class Controller {
 	
 	public static void main(String[] args) {
 		
-		// Myclass is the cild of parent runnable interface
+		// This is main method for Thread class
 		
-		// but here for achieving multithreading we need the start method which the Thread class has
-		// so object creation of the thread class is also required here
+		// there are two ways to achieve multithreading 
+		// 1) using the Thread Class
+		// 2) using the Runnable interface
 		
-		// firstly the child class
-		Myclass md = new  Myclass();
-		NewThread th = new NewThread();
-		// This reference md we can pass to the Thread class
-		Thread sd = new Thread(md);
-		Thread sdd = new Thread(th);
+		MyThread mt = new MyThread();
+		mt.start(); // we call start method for the execution of the run method
+		mt.myMethod(); // this is my method
 		
-		sd.start();  // the start method execute the run method
-		try {
-			sd.join();  // waits until the first thread is completed
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		sdd.start();
-		
-		md.myMethodR();
-		md.ownMethod();
-		// this is where the multithreading happens.
-//		now we can  see the multithreading 
-		
-	
-		// Thread two
+		// server is the one of the example of multithreading as is process the multiple requests at a single time and provides the response to the multiple users.
+		// The output clearly showcase the multithreading.
 		
 		
+		System.out.println();
+		System.out.println("Below used the method yeild in one of the thread");
+		// Lets deal with the new threads present
 		
+		NewThread nh = new NewThread();
+		NewThreadTwo nht = new NewThreadTwo();
 		
-	
+		Thread d = new Thread(nh);
+		Thread d2 = new Thread(nht);
+		
+	     d.start();
+	     
+	     d2.start();
+	     nht.setName("Worker Thread" );
+	     // we set the Thread Name
+	     System.out.println(nht.getName());// The name of the Thread Gets print
+	     System.out.println(nht.isAlive()); // Checks wheater the thread is Alive Given answer False means the thread is running or not
 	}
 
 }
